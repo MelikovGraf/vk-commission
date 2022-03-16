@@ -1,0 +1,26 @@
+const val NULL = 0U
+const val THOUSAND = 1000U
+const val TEN_THOUSAND = 10000U
+const val FIRST_COUPON = 100U
+const val SECOND_COUPON = 20U
+const val SECOND_COUPON_VALUE = 5U
+fun main() {
+    var amountNew = 0U
+    var amountWithDiscount = 0U
+    while (true) {
+        print("Введите сумму покупки: ")
+        var amount = readLine()?.toUInt() ?: return
+        amountWithDiscount = if (amount >= TEN_THOUSAND)
+            amount - (amount / SECOND_COUPON)
+        else if (amount <= TEN_THOUSAND && amount > THOUSAND)
+            amount - FIRST_COUPON
+        else amount
+        val discount = if (amount <= THOUSAND)
+            println("Действует следующая скидка: $NULL")
+        else if (amount <= TEN_THOUSAND)
+            println("Действует следующая скидка: $FIRST_COUPON")
+        else println("Действует следующая скидка: $SECOND_COUPON_VALUE %")
+        println("Сумма покупок с учетом скидки: $amountWithDiscount рублей")
+        amountNew += amountWithDiscount
+    }
+}
