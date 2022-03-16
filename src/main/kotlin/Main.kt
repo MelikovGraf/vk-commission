@@ -6,8 +6,10 @@ fun main() {
         print("Input amount: ")
         val amount = readLine()?.toFloat() ?: return
         val resultCommission = amount * COMMISSION
-        val result = if (resultCommission <= NULL || amount < 4667)
+        val result = if (resultCommission <= NULL)
             NULL
+        else if (amount <= MIN_COMMISSION)
+            amount
         else if (resultCommission <= MIN_COMMISSION)
             MIN_COMMISSION
         else resultCommission
