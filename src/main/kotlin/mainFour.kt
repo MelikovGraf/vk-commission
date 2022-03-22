@@ -9,25 +9,36 @@ const val NULL = 0
 
 fun main() {
     while (true) {
-        print("Введите кол-во секунд, проведенные пользователем: ")
-        val second = readLine()?.toInt() ?: return
-        val result = if (second < 0) NULL
-        else if (second < JUST_NOW) JUST_NOW
-        else if (second < MINUTE) MINUTE
-        else if (second < HOUR) HOUR
-        else if (second < DAY) DAY
-        else if (second < YESTERDAY) YESTERDAY
-        else OTHER
-        when (result) {
-            JUST_NOW -> println("Только что был в сети")
-            MINUTE -> println("${minute(second)} назад был в сети")
-            HOUR -> println("${hour(second)} назад был в сети")
-            DAY -> println("Сегодня был в сети")
-            YESTERDAY -> println("Вчера был в сети")
-            OTHER -> println("Давно был в сети")
-            else -> {
-                error(" Неверно указано количество секунд ")
-            }
+        ago(JUST_NOW, MINUTE, HOUR, DAY, YESTERDAY, OTHER, NULL)
+    }
+}
+
+fun ago(
+    JUST_NOW: Int,
+    MINUTE: Int,
+    HOUR: Int,
+    DAY: Int,
+    YESTERDAY: Int,
+    OTHER: Int,
+    NULL: Int) {
+    print("Введите кол-во секунд, проведенные пользователем: ")
+    val second = readLine()?.toInt() ?: return
+    val result = if (second < 0) NULL
+    else if (second < JUST_NOW) JUST_NOW
+    else if (second < MINUTE) MINUTE
+    else if (second < HOUR) HOUR
+    else if (second < DAY) DAY
+    else if (second < YESTERDAY) YESTERDAY
+    else OTHER
+    when (result) {
+        JUST_NOW -> println("Только что был в сети")
+        MINUTE -> println("${minute(second)} назад был в сети")
+        HOUR -> println("${hour(second)} назад был в сети")
+        DAY -> println("Сегодня был в сети")
+        YESTERDAY -> println("Вчера был в сети")
+        OTHER -> println("Давно был в сети")
+        else -> {
+            error(" Неверно указано количество секунд ")
         }
     }
 }
