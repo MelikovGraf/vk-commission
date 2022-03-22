@@ -1,19 +1,23 @@
 fun main() {
     while (true) {
-        print("\nВведите цифру типа карты: \n1. MasterCard  \n2. Мир \n3. VkPay\n")
-        val typeCard = readLine()?.toInt() ?: return
-        if (typeCard < 3 && typeCard > 0) {
-            print("Введите сумму предыдущий выплат: ")
-            val prevPay = readLine()?.toInt() ?: return
-            print("Введите сумму перевода: ")
-            val sumPay = readLine()?.toInt() ?: return
-            when (typeCard) {
-                1 -> println("Сумма к оплате с учетом коммиссии ${masterCard(prevPay, sumPay)}")
-                2 -> println("Сумма к оплате с учетом коммиссии ${mir(prevPay, sumPay)}")
-                3 -> println("Сумма к оплате с учетом коммиссии ${vk(prevPay, sumPay)}")
-            }
-        } else error("Error")
+        paymant()
     }
+}
+
+fun paymant() {
+    print("\nВведите цифру типа карты: \n1. MasterCard  \n2. Мир \n3. VkPay\n")
+    val typeCard = readLine()?.toInt() ?: return
+    if (typeCard < 3 && typeCard > 0) {
+        print("Введите сумму предыдущий выплат: ")
+        val prevPay = readLine()?.toInt() ?: return
+        print("Введите сумму перевода: ")
+        val sumPay = readLine()?.toInt() ?: return
+        when (typeCard) {
+            1 -> println("Сумма к оплате с учетом коммиссии ${masterCard(prevPay, sumPay)}")
+            2 -> println("Сумма к оплате с учетом коммиссии ${mir(prevPay, sumPay)}")
+            3 -> println("Сумма к оплате с учетом коммиссии ${vk(prevPay, sumPay)}")
+        }
+    } else error("Error")
 }
 
 fun vk(
